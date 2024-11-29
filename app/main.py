@@ -1,32 +1,31 @@
 class Animal:
-    alive = []  # Class attribute to track all alive animals
+    alive = []
 
-    def __init__(self, name, health=100):
-        self.name = name
-        self.health = health
-        self.hidden = False
+    def __init__(self, name: str, health: int = 100) -> None:
+        self.name: str = name
+        self.health: int = health
+        self.hidden: bool = False
         if self.health > 0:
             Animal.alive.append(self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{{Name: {self.name}, Health: {self.health}, Hidden: {self.hidden}}}"
 
     @classmethod
-    def update_alive(cls):
+    def update_alive(cls) -> None:
         cls.alive = [animal for animal in cls.alive if animal.health > 0]
 
 
 class Herbivore(Animal):
-    def hide(self):
+    def hide(self) -> None:
         self.hidden = not self.hidden
 
 
 class Carnivore(Animal):
-    def bite(self, prey):
+    def bite(self, prey: "Animal") -> None:
         if isinstance(prey, Herbivore) and not prey.hidden:
             prey.health -= 50
             if prey.health <= 0:
                 Animal.update_alive()
-
 
 
