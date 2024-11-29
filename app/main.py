@@ -9,7 +9,8 @@ class Animal:
             Animal.alive.append(self)
 
     def __repr__(self) -> str:
-        return f"{{Name: {self.name}, Health: {self.health}, Hidden: {self.hidden}}}"
+        return (f"{{Name: {self.name}, "
+                f"Health: {self.health}, Hidden: {self.hidden}}}")
 
     @classmethod
     def update_alive(cls) -> None:
@@ -27,5 +28,3 @@ class Carnivore(Animal):
             prey.health -= 50
             if prey.health <= 0:
                 Animal.update_alive()
-
-
